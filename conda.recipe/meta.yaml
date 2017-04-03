@@ -1,0 +1,40 @@
+package:
+  name: mdconvert
+  version: "0.1.0"
+
+source:
+  git_url: ..
+
+build:
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+  run:
+    - nbformat
+    - python
+    - ruamel_yaml
+
+test:
+  source_files:
+    - tests
+    - setup.cfg
+  requires:
+    - pytest
+    - flake8
+  imports:
+    - mdconvert
+  commands:
+    - flake8 mdconvert
+    - pytest
+    - jupyter mdconvert --help
+
+about:
+  home: http://github.com/tonyfast/mdconvert
+  license: BSD-3-Clause
+  license_family: BSD
+  license_file: LICENSE
+  summary: Configure and convert notebooks using metadata
