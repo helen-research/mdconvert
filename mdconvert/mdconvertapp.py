@@ -32,21 +32,19 @@ class NbConvertExporter(TemplateExporter):
         # nbconvert options embedded in the metadata as a dict or a list.
         convert  = nb.metadata.pop('nbconvert', {})
 
-        # convert is a master switch for the conversion.
-        if convert.pop('convert', True):
-            for exporter, config in (
-                isinstance(convert, dict) and convert.items() or convert
-            ):
-                app = NbConvertApp(config=Config(config))
-                app.initialize([])
-                app.exporter = get_exporter(exporter)(config=app.config)
-                app.convert_single_notebook(self.filename)
+        for exporter, config in (
+            isinstance(convert, dict) and convert.items() or convert
+        ):
+            app = NbConvertApp(config=Config(config))
+            app.initialize([])
+            app.exporter = get_exporter(exporter)(config=app.config)
+            app.convert_single_notebook(self.filename)
 
-            # How long did the conversions take?
-            if convert:
-                app.log.info(
-                    "Conversions completed in {} seconds.".format(
-                        time()-start_time))
+        # How long did the conversions take?
+        if convert:
+            app.log.info(
+                "Conversions completed in {} seconds.".format(
+                    time()-start_time))
 
         return
 
