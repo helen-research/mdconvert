@@ -28,23 +28,43 @@ nbconvert:
 !jupyter mdconvert README.ipynb
 ```
 
-    <class 'list'>
     [NbConvertApp] Converting notebook README.ipynb to html
-    [MDConvertApp] Writing 613 bytes to README.md
-    [NbConvertApp] Conversions completed in 0.1194000244140625 seconds.
+    [MDConvertApp] Writing 1288 bytes to README.md
+    [NbConvertApp] Conversions completed in 0.10619997978210449 seconds.
 
+
+## `PostSaveContentsManager`
+
+Have `mdconvert` create derived notebooks each time a notebook is saved.
+
+        jupyter notebook --NotebookApp.contents_manager_class=mdconvert.PostSaveContentsManager
+        
+__or__ _install `mdconvert` as an extension_
+        
+        jupyter serverextension enable --py mdconvert
+
+## Executing notebooks
 
 
 ```python
-
+# !jupyter mdconvert README.ipynb --execute
 ```
+
+    [MDConvertApp] Executing notebook with kernel: root
+    [NbConvertApp] Converting notebook README.ipynb to html
+    [MDConvertApp] Writing 1257 bytes to README.md
+    [NbConvertApp] Conversions completed in 3.65071702003479 seconds.
+
+
+## Executing with a different kernel
 
 
 ```python
-!jupyter serverextension enable --py jawn
+# !jupyter mdconvert README.ipynb --execute --ExecutePreprocessor.kernel_name=py36
 ```
 
+    [MDConvertApp] Executing notebook with kernel: py36
+    [NbConvertApp] Converting notebook README.ipynb to html
+    [MDConvertApp] Writing 1530 bytes to README.md
+    [NbConvertApp] Conversions completed in 3.655313014984131 seconds.
 
-```python
-import mdconvert
-```
