@@ -8,7 +8,7 @@ from notebook.services.contents.filemanager import FileContentsManager
 from time import time
 from traitlets import Bool, CUnicode, Unicode
 from traitlets.config.loader import  Config
-import json, yaml
+import json, ruamel_yaml as yaml
 
 # Add additional command line aliases
 aliases = dict(base_aliases)
@@ -31,10 +31,10 @@ class NbConvertExporter(TemplateExporter):
 
         # nbconvert options embedded in the metadata as a dict or a list.
         convert  = nb.metadata.pop('nbconvert', {})
+        if isinstance(convert, dict):
+            convert = convert.items()
 
-        for exporter, config in (
-            isinstance(convert, dict) and convert.items() or convert
-        ):
+        for exporter, config in convert:
             app = NbConvertApp(config=Config(config))
             app.initialize([])
             app.exporter = get_exporter(exporter)(config=app.config)
@@ -74,18 +74,6 @@ class MDConvertApp(NbConvertApp):
         except ConversionException:
             self.log.error("Error while converting '%s'", notebook_filename, exc_info=True)
             self.exit(1)
-
-def _jupyter_server_extension_paths():
-    return [{
-        "module": "mdconvert"
-    }]
-
-
-def load_jupyter_server_extension(nb_app):
-    nb_app.web_app.settings.update(
-        contents_manager=PostSaveContentsManager(parent=nb_app, log=nb_app.log)
-    )
-
 
 print_metadata = """
 this.element.append(
