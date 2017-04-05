@@ -3,6 +3,8 @@
 
 # Usage
 
+        pip install mdconvert
+
 (Edit > Edit Notebook Metadata) and add a `nbconvert` key a notebook's `metadata`; the `value` is a list of lists - the `export_format` & an object with [`configurables`](http://nbconvert.readthedocs.io/en/latest/config_options.html), respectively.
 
 > Edit the `metadata` with a cell magic.
