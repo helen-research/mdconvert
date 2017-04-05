@@ -68,3 +68,16 @@ __or__ _install `mdconvert` as an extension_
     [MDConvertApp] Writing 1530 bytes to README.md
     [NbConvertApp] Conversions completed in 3.655313014984131 seconds.
 
+
+
+```python
+import mdconvert
+mdconvert.__version__
+```
+
+
+
+
+    '0.1.0'
+
+
