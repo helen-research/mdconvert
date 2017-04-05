@@ -19,16 +19,10 @@ nbconvert:
     - [markdown, {}]
 ```
 
-
-    <IPython.core.display.Javascript object>
-
-
-
 ```python
 !jupyter mdconvert README.ipynb
 ```
 
-    [NbConvertApp] Converting notebook README.ipynb to html
     [MDConvertApp] Writing 1288 bytes to README.md
     [NbConvertApp] Conversions completed in 0.10619997978210449 seconds.
 
@@ -51,7 +45,6 @@ __or__ _install `mdconvert` as an extension_
 ```
 
     [MDConvertApp] Executing notebook with kernel: root
-    [NbConvertApp] Converting notebook README.ipynb to html
     [MDConvertApp] Writing 1257 bytes to README.md
     [NbConvertApp] Conversions completed in 3.65071702003479 seconds.
 
@@ -64,7 +57,6 @@ __or__ _install `mdconvert` as an extension_
 ```
 
     [MDConvertApp] Executing notebook with kernel: py36
-    [NbConvertApp] Converting notebook README.ipynb to html
     [MDConvertApp] Writing 1530 bytes to README.md
     [NbConvertApp] Conversions completed in 3.655313014984131 seconds.
 
